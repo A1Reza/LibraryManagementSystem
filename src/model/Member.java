@@ -15,6 +15,11 @@ public class Member {
         this.phone = phone;
     }
 
+    public Member(String fullName, String phone) {
+        this.fullName = fullName;
+        this.phone = phone;
+    }
+
     public int getId() {
         return id;
     }

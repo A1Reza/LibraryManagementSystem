@@ -18,6 +18,13 @@ public class Book {
         this.stock = stock;
     }
 
+    public Book(String title, String author, double price, int stock) {
+        this.title = title;
+        this.author = author;
+        this.price = price;
+        this.stock = stock;
+    }
+
     public int getId() {
         return id;
     }
