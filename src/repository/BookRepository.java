@@ -84,6 +84,28 @@ public class BookRepository {
         }
     }
 
+    public void deleteBook(int id) throws BookNotFoundException {
+
+        String sql = "DELETE FROM book WHERE id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, id);
+
+            int rows = preparedStatement.executeUpdate();
+
+            if (rows == 0) {
+                throw new BookNotFoundException("Book with id " + id + " not found.");
+            }
+
+            System.out.println("Book deleted successfully.");
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting book.", e);
+        }
+    }
+
 
 
 }
