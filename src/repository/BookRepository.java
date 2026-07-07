@@ -60,4 +60,30 @@ public class BookRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public void updateBookPrice(int id, double newPrice) throws BookNotFoundException {
+
+        String sql = "UPDATE book SET price = ? WHERE id = ?";
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setDouble(1, newPrice);
+            preparedStatement.setInt(2, id);
+
+            int rows = preparedStatement.executeUpdate();
+
+            if (rows == 0) {
+                throw new BookNotFoundException("Book with id " + id + " not found.");
+            }
+
+            System.out.println("Book price updated successfully.");
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating book price.", e);
+        }
+    }
+
+
+
 }
