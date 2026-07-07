@@ -1,5 +1,6 @@
 package repository;
 
+import exception.BookNotFoundException;
 import model.Book;
 import util.DBConnection;
 
